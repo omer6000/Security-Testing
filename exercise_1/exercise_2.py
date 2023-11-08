@@ -31,7 +31,7 @@ def ld_wrapper(inp):
     return levenshtein_distance(split_inp[0],split_inp[1])
 
 def run():
-    random_fuzzer = Fuzzer.RandomFuzzer()
+    random_fuzzer = Fuzzer.RandomFuzzer(max_length=20)
     return random_fuzzer.runs(runner=FunctionRunner(ld_wrapper), trials=10)
 
 
