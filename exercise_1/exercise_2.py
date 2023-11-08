@@ -23,8 +23,12 @@ class FunctionRunner(Fuzzer.ProgramRunner):
 
 
 def ld_wrapper(inp):
-    pass
-
+    # pass
+    split_inp = inp.split('+')
+    n = len(split_inp)
+    if n < 2:
+        raise ValueError
+    return levenshtein_distance(split_inp[0],split_inp[1])
 
 def run():
     random_fuzzer = Fuzzer.RandomFuzzer()
