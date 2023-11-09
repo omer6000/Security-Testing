@@ -1,29 +1,21 @@
 from exercise_1 import levenshtein_distance
 from fuzzingbook import Fuzzer
 
-class FunctionRunner(Fuzzer.ProgramRunner):
-    def __init__(self, program):
-        super().__init__(program)
-        self.outcome = ""
-    
+class FunctionRunner(Fuzzer.ProgramRunner): 
     def run_process(self,a,b):
         try:
-            res = a(b)
-            self.outcome = self.PASS
-            return res
+            return (a(b),self.PASS)
         except LookupError:
-            self.outcome = self.FAIL
-            return None
+            return (None, self.FAIL)
         except:
-            self.outcome = self.UNRESOLVED
-            return None
+            return (None,self.UNRESOLVED)
     def run(self,inp):
-        return ((inp,self.run_process(self.program,inp)),self.outcome)
-
-
+        proc_outcome = self.run_process(self.program,inp)
+        result = (inp,proc_outcome[0])
+        outcome = proc_outcome[1]
+        return (result,outcome)
 
 def ld_wrapper(inp):
-    # pass
     split_inp = inp.split('+')
     n = len(split_inp)
     if n < 2:
