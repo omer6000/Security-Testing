@@ -25,20 +25,3 @@ TINYCGRAMMAR = {
     "<bracket_left>": ["("],
     "<bracket_right>": [")"]
 }
-
-from fuzzingbook.Grammars import simple_grammar_fuzzer
-import random
-# random.seed()
-# a = simple_grammar_fuzzer(TINYCGRAMMAR)
-# print(a)
-
-#                 "{" <statement>* "}" |
-#                 <expr> ";" |
-#                 ";"
-# <paren_expr> ::= "(" <expr> ")"
-# <expr> ::= <test> | <id> "=" <expr>
-# <test> ::= <sum> | <sum> "<" <sum>
-# <sum> ::= <term> | <sum> "+" <term> | <sum> "-" <term>
-# <term> ::= <id> | <int> | <paren_expr>
-# <id> ::= "a" | "b" | "c" | "d" | ... | "z"
-# <int> ::= <an_unsigned_decimal_integer>

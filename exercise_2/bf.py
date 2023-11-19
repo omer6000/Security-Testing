@@ -2,28 +2,28 @@ import sys
 import random
 
 def interpret(program):
-    pos = 0 #instruction pointer
-    ptr = 0 #data pointer
+    pos = 0
+    ptr = 0
     memory = {0: 0}
     while pos < len(program):
         if program[pos] == '>':
             ptr += 1
             if ptr not in memory:
-                memory[ptr] = 0 #wrong line
+                memory[ptr+1] = 0
             pos += 1
         elif program[pos] == '<':
             ptr -= 1
             if ptr not in memory:
-                memory[ptr] = 0 #wrong line
+                memory[ptr-1] = 0
             pos += 1
         elif program[pos] == '+':
-            memory[ptr] = (memory[ptr]+1) % 256 #wrong line
+            memory[ptr] = (memory[ptr]+1)
             pos += 1
         elif program[pos] == '-':
-            memory[ptr] = (memory[ptr]-1) % 256 # wrong line
+            memory[ptr] = (memory[ptr]-1)
             pos += 1
         elif program[pos] == '.':
-            print(chr(memory[ptr]), end='') #negative value as input to chr
+            print(chr(memory[ptr]), end='')
             pos += 1
         elif program[pos] == ',':
             # Read from random instead of stdin.
