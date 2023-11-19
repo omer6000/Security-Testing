@@ -6,4 +6,3 @@ You must list less than 7 line numbers.
 '''
 
 lines = [20,23,26,33,49]
-
