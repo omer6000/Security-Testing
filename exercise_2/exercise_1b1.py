@@ -5,4 +5,5 @@ Replace the "1,2,3,4,5" with the correct line numbers.
 You must list less than 7 line numbers.
 '''
 
-lines = [1,2,3,4,5]
+lines = [20,23,26,33,49]
+

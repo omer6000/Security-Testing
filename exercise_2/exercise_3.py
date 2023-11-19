@@ -1,4 +1,4 @@
-Q1 = None
-Q2 = None
-Q3 = None
-Q4 = None
+Q1 = 1
+Q2 = 1
+Q3 = 1
+Q4 = 1
