@@ -1,3 +1,4 @@
+from fuzzingbook.GrammarFuzzer import GrammarFuzzer
 BFGRAMMAR = {
     "<start>":  ["<expr>"],
     "<expr>": ["<expr><expr2><expr>","<expr2><expr><expr>","<expr><expr><expr2>","<expr2>"],
@@ -13,3 +14,5 @@ BFGRAMMAR = {
     "<right_bracket>": ["]"]
 
 }
+a = GrammarFuzzer()
+print(a)
