@@ -2,17 +2,24 @@
 Use this file to implement your solution for exercise 3-2 a.
 """
 
+# RE_GRAMMAR_EXPANDED = {
+#     '<start>': ['<alternative>', '^<alternative-1>', '<alternative-2>$', '^<alternative-3>$'],
+#     '<alternative>': ['<concat>', '<concat>|<alternative>'],
+#     '<alternative-1>': ['<concat-1>', '<concat-1>|<alternative-1>'],
+#     '<alternative-2>': ['<concat-2>', '<concat-2>|<alternative-2>'],
+#     '<alternative-3>': ['<concat-3>', '<concat-3>|<alternative-3>'],
+#     '<concat>': ['', '<concat><regex>'],
+#     '<concat-1>': ['', '<concat-1><regex-1>'],
+#     '<concat-2>': ['', '<concat-2><regex>'],
+#     '<concat-3>': ['', '<concat-3><regex>'],
+
+#     '<regex>': ['<symbol>', '<symbol>*', '<symbol>+', '<symbol>?', '<symbol>{<range>}'],
+#     '<symbol>': ['.', '<char>', '(<alternative>)'],
+#     '<char>': ['a', 'b', 'c'],
+#     '<range>': ['<num>', ',<num>'],
+#     '<num>': ['1', '2'],
+# }
 RE_GRAMMAR_EXPANDED = {
-    '<start>': ['<alternative>', '^<alternative>', '<alternative>$', '^<alternative>$'],
-    '<alternative>': ['<concat>', '<concat>|<alternative>'],
-    '<concat>': ['', '<concat><regex>'],
-    '<regex>': ['<symbol>', '<symbol>*', '<symbol>+', '<symbol>?', '<symbol>{<range>}'],
-    '<symbol>': ['.', '<char>', '(<alternative>)'],
-    '<char>': ['a', 'b', 'c'],
-    '<range>': ['<num>', ',<num>'],
-    '<num>': ['1', '2'],
-}
-{
     "<start>": [
         "<alternative-1>",
         "^<alternative-2>",
