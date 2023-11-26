@@ -20,15 +20,15 @@ c3 = 0
 
 for i in range(steps):
     # run the experiment for GrammarFuzzer with RE_GRAMMAR
-    gf1 = GrammarFuzzer(RE_GRAMMAR,min_nonterminals=3,max_nonterminals=20)
+    gf1 = GrammarFuzzer(RE_GRAMMAR,min_nonterminals=3,max_nonterminals=15)
     c1 += get_coverage(gf1)
 
     # run the experiment for GrammarCoverageFuzzer with RE_GRAMMAR
-    gf2 = GrammarCoverageFuzzer(RE_GRAMMAR,min_nonterminals=3,max_nonterminals=20)
+    gf2 = GrammarCoverageFuzzer(RE_GRAMMAR,min_nonterminals=3,max_nonterminals=15)
     c2 += get_coverage(gf2)
 
     # run the experiment for GrammarCoverageFuzzer with RE_GRAMMAR_EXPANDED
-    gf3 = GrammarCoverageFuzzer(RE_GRAMMAR_EXPANDED,min_nonterminals=3, max_nonterminals=20)
+    gf3 = GrammarCoverageFuzzer(RE_GRAMMAR_EXPANDED,min_nonterminals=3, max_nonterminals=15)
     c3 += get_coverage(gf3)
 
 print('GrammarFuzzer: {}'.format(c1/steps)) # print the average code coverage for GrammarFuzzer + RE_GRAMMAR
