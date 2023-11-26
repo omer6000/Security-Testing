@@ -13,10 +13,24 @@ import random
 
 random.seed()
 
-# run the experiment for GrammarFuzzer with RE_GRAMMAR
-# run the experiment for GrammarCoverageFuzzer with RE_GRAMMAR
-# run the experiment for GrammarCoverageFuzzer with RE_GRAMMAR_EXPANDED
+steps = 25
+c1 = 0
+c2 = 0
+c3 = 0
 
-print('GrammarFuzzer: {}'.format(0)) # print the average code coverage for GrammarFuzzer + RE_GRAMMAR
-print('GrammarCoverageFuzzer: {}'.format(0)) # print the average code coverage for GrammarCoverageFuzzer + RE_GRAMMAR
-print('GrammarCoverageFuzzer+: {}'.format(0)) # print the average code coverage for GrammarCoverageFuzzer + RE_GRAMMAR_EXPANDED
+for i in range(steps):
+    # run the experiment for GrammarFuzzer with RE_GRAMMAR
+    gf1 = GrammarFuzzer(RE_GRAMMAR)
+    c1 += get_coverage(gf1)
+
+    # run the experiment for GrammarCoverageFuzzer with RE_GRAMMAR
+    gf2 = GrammarCoverageFuzzer(RE_GRAMMAR)
+    c2 += get_coverage(gf2)
+
+    # run the experiment for GrammarCoverageFuzzer with RE_GRAMMAR_EXPANDED
+    gf3 = GrammarCoverageFuzzer(RE_GRAMMAR_EXPANDED)
+    c3 += get_coverage(gf3)
+
+print('GrammarFuzzer: {}'.format(c1/steps)) # print the average code coverage for GrammarFuzzer + RE_GRAMMAR
+print('GrammarCoverageFuzzer: {}'.format(c2/steps)) # print the average code coverage for GrammarCoverageFuzzer + RE_GRAMMAR
+print('GrammarCoverageFuzzer+: {}'.format(c3/steps)) # print the average code coverage for GrammarCoverageFuzzer + RE_GRAMMAR_EXPANDED
