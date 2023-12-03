@@ -3,8 +3,8 @@ Use this file to implement your solution for exercise 4-2
 """
 
 
-from fuzzingbook.Grammars import srange, opts, is_valid_grammar, crange
-from fuzzingbook.GeneratorGrammarFuzzer import GeneratorGrammarFuzzer, GrammarFuzzer
+from fuzzingbook.Grammars import srange, opts, is_valid_grammar
+from fuzzingbook.GeneratorGrammarFuzzer import GeneratorGrammarFuzzer
 import string
 import random
 
@@ -20,13 +20,16 @@ iban_cc_len = [("AL", 28), ("AD", 24), ("AT", 20), ("AZ", 28), ("BH", 22), ("BY"
                ("SK", 24), ("SI", 19), ("ES", 24), ("SE", 24), ("CH", 21), ("TL", 23), ("TN", 24), 
                ("TR", 26), ("UA", 29), ("AE", 23), ("GB", 22), ("VA", 22), ("VG", 24)]
 
-def repair_iban(iban):
-    cc = iban[:2]
+def repair_iban_len(country_code,check_digits,bban):
+    iban = country_code+check_digits+bban
     for country in iban_cc_len:
-        if country[0] == cc:
-            bban_len = country[1] - 4
-            bban = random.randint(10**(bban_len-1),10**bban_len-1)
-            return iban[:4] + str(bban)
+        if country[0] == country_code:
+            if len(iban) == country[1]:
+                return iban
+            else:
+                bban_len = country[1] - 4
+                bban = random.randint(10**(bban_len-1),10**bban_len-1)
+                return country_code + check_digits + str(bban)
 
 def repair_check_digit(iban):
     # Check for Value Error
@@ -66,7 +69,7 @@ def repair_check_digit(iban):
 
 IBAN_GRAMMAR = {
     "<start>": [("<iban>",opts(post=lambda iban: repair_check_digit(iban)))],
-    "<iban>": [("<country_code><check_digits><bban>",opts(post=lambda country_code,check_digits,bban: repair_iban(country_code+check_digits+bban)))],
+    "<iban>": [("<country_code><check_digits><bban>",opts(post=lambda country_code,check_digits,bban: repair_iban_len(country_code,check_digits,bban)))],
     "<country_code>": [("<letter><letter>",opts(pre=lambda: random.choice(iban_cc_len)[0]))],
     "<check_digits>": ["<digit><digit>"],
     "<bban>": ["<digits>"],

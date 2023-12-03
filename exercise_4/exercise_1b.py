@@ -1,6 +1,8 @@
 """
 Use this file to implement your solution for exercise 4-1 b.
 """
+from fuzzingbook.Parser import EarleyParser
+from fuzzingbook.ProbabilisticGrammarFuzzer import ProbabilisticGrammarMiner
 
 from examples import examples
 
@@ -17,4 +19,5 @@ RE_GRAMMAR = {
 }
 
 def learn_probabilities():
-    return None
+    probabilistic_grammar_miner = ProbabilisticGrammarMiner(EarleyParser(RE_GRAMMAR))
+    return probabilistic_grammar_miner.mine_probabilistic_grammar(examples)
