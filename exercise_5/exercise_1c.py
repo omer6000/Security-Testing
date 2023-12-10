@@ -1,4 +1,4 @@
-Q1 = None
-Q2 = None
-Q3 = None
-Q4 = None
+Q1 = False
+Q2 = False
+Q3 = True
+Q4 = False
