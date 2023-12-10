@@ -9,7 +9,19 @@ import html
 class RandomCoverageFuzzer(RandomFuzzer):
     
     def runs(self, runner: FunctionCoverageRunner):
-        pass
+        iterations = 0
+        coverage_set = set()
+        results = []
+        while iterations < 10:
+            iter_res = self.run(runner)
+            coverage =  runner.coverage
+            results.append(iter_res)
+            if coverage_set.intersection(coverage) == coverage: # No change
+                iterations += 1
+            else: # New coverage
+                coverage_set.update(coverage)
+                iterations = 0
+        return results
 
 
 if __name__ == '__main__':

@@ -27,6 +27,22 @@ class FunctionCoverageRunner(FunctionRunner):
     
     def __init__(self, function):
         super().__init__(function)
+        self.coverage = None
         
     def run_function(self, inp):
-        pass
+        try:
+            with Coverage() as cov:
+                res = self.function(inp)
+                self.coverage = cov.coverage()
+                return res                
+        except Exception as e:
+            self.coverage = cov.coverage()
+            raise e
+
+def sample_func(inp):
+    return inp*5
+
+if __name__ == "__main__":
+    cov_class = FunctionCoverageRunner(sample_func)
+    r = cov_class.run(2)
+    print(cov_class.coverage)
