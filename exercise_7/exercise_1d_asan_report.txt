@@ -1,0 +1,62 @@
+regexp error : failed to compile: End of range is before start of range
+=================================================================
+==75467==ERROR: AddressSanitizer: heap-buffer-overflow on address 0xffff871007bc at pc 0x0000004f4ac8 bp 0xffffd18e7970 sp 0xffffd18e7968
+READ of size 1 at 0xffff871007bc thread T0
+    #0 0x4f4ac4 in xmlFAParsePosCharGroup /libxml2/xmlregexp.c:5071:15
+    #1 0x4f1300 in xmlFAParseCharGroup /libxml2/xmlregexp.c:5093:6
+    #2 0x4f0504 in xmlFAParseCharClass /libxml2/xmlregexp.c:5130:2
+    #3 0x4f0504 in xmlFAParseAtom /libxml2/xmlregexp.c:5284:2
+    #4 0x4f0504 in xmlFAParsePiece /libxml2/xmlregexp.c:5301:11
+    #5 0x4ee530 in xmlFAParseBranch /libxml2/xmlregexp.c:5336:8
+    #6 0x4c438c in xmlFAParseRegExp /libxml2/xmlregexp.c:5362:5
+    #7 0x4c3754 in xmlRegexpCompile /libxml2/xmlregexp.c:5454:5
+    #8 0x4b9be0 in harness /libxml2/./harness2.c:17:23
+    #9 0x4b9ed8 in main /libxml2/./harness2.c:32:3
+    #10 0xffff8b17be0c in __libc_start_main (/lib/aarch64-linux-gnu/libc.so.6+0x20e0c)
+    #11 0x4211e8 in _start (/libxml2/fuzzer+0x4211e8)
+
+0xffff871007bc is located 0 bytes to the right of 12-byte region [0xffff871007b0,0xffff871007bc)
+allocated by thread T0 here:
+    #0 0x48e08c in malloc (/libxml2/fuzzer+0x48e08c)
+    #1 0x743120 in xmlStrndup /libxml2/xmlstring.c:45:23
+    #2 0x7433dc in xmlStrdup /libxml2/xmlstring.c:71:12
+    #3 0x4c342c in xmlRegNewParserCtxt /libxml2/xmlregexp.c:692:16
+    #4 0x4c342c in xmlRegexpCompile /libxml2/xmlregexp.c:5444:12
+    #5 0x4b9be0 in harness /libxml2/./harness2.c:17:23
+    #6 0x4b9ed8 in main /libxml2/./harness2.c:32:3
+    #7 0xffff8b17be0c in __libc_start_main (/lib/aarch64-linux-gnu/libc.so.6+0x20e0c)
+    #8 0x4211e8 in _start (/libxml2/fuzzer+0x4211e8)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /libxml2/xmlregexp.c:5071:15 in xmlFAParsePosCharGroup
+Shadow bytes around the buggy address:
+  0x200ff0e200a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff0e200b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff0e200c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff0e200d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff0e200e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x200ff0e200f0: fa fa 00 04 fa fa 00[04]fa fa fa fa fa fa fa fa
+  0x200ff0e20100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff0e20110: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff0e20120: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff0e20130: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff0e20140: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
