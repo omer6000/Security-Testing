@@ -1,0 +1,5 @@
+<integer> ::= <digit> | <digit><integer>
+
+<integer> -> 5<integer> -> 2<integer> - > 4 
+= 5<integer> -> 24
+=524
