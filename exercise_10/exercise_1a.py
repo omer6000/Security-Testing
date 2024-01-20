@@ -33,8 +33,7 @@ def parse_and_process(args):
                     help='Sort individual strings in normal order before concatenating.')
     group.add_argument('--reversesort', action='store_const', const='reversesort', dest='preprocessing',
                     help='Sort individual strings in reverse order before concatenating.')
-    parser.add_argument('--output-average-string-length', action='store_true',
-                        help='Output the average string length.')
+    parser.add_argument('--output-average-string-length', action='store_true')
 
     args = parser.parse_args(args)
     
