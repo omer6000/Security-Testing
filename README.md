@@ -1,1 +1,3 @@
-# Security-Testing
+# Assignments README - Security Testing Course, Saarland University
+
+These assignments are part of the "Security Testing" course at Saarland University, focusing on automating software testing. The coursework emphasizes automatic test generation, including fuzzing, and enhancing testing techniques. It covers setting up automated testing frameworks, implementing test generation algorithms, and applying advanced methodologies like fuzzing to boost software testing efficiency and effectiveness. The objective is to demonstrate the practical application of theoretical concepts in improving software quality through cutting-edge testing strategies.
